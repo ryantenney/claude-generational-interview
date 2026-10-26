@@ -1,0 +1,12 @@
+# Cheapest sensible first real run: Opus 5.5 vs Opus 4.5 (both served today), 6 turns, one conversation.
+# The Opus 5.5 vs Opus 3 pairing is in opus55_vs_opus3.yaml; use it if you can reach Opus 3.
+name: quickstart
+participants:
+  a: {model: claude-opus-5-5, effort: medium, max_tokens: 4000}
+  b: {model: claude-opus-4-5, max_tokens: 2000}
+seed: {topic: null}
+first_speaker: a
+runs: 1
+stop: {max_turns: 6, max_cost_usd: 2}
+classifier: {model: claude-opus-5-5, mode: observe, effort: medium, window: 3}
+output_dir: runs

@@ -49,6 +49,21 @@ def cmd_check(args) -> int:
     return 0 if ok else 1
 
 
+def _finish(out: Path) -> int:
+    """Print the outcome of an experiment directory; non-zero if any run failed."""
+    import json
+    exp = json.loads((out / "experiment.json").read_text()) if (out / "experiment.json").exists() else {}
+    failures = exp.get("failures") or {}
+    if failures:
+        print(f"\n{len(failures)} run(s) failed; completed turns were kept. Fix the cause, then: genint resume {out}",
+              file=sys.stderr)
+        for i, msg in sorted(failures.items()):
+            print(f"  run {int(i) + 1}: {msg}", file=sys.stderr)
+        return 1
+    print(f"done: {out}")
+    return 0
+
+
 def cmd_run(args) -> int:
     cfg = _load(args)
     backend, kind, note = _backend(args)
@@ -69,15 +84,13 @@ def cmd_run(args) -> int:
     except (BackendError, RequestConfigError) as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
-    print(f"done: {out}")
-    return 0
+    return _finish(out)
 
 
 def cmd_resume(args) -> int:
     backend, kind, _ = _backend(args)
     out = E.resume_experiment(Path(args.dir), backend, kind if args.mock else None)
-    print(f"done: {out}")
-    return 0
+    return _finish(out)
 
 
 def cmd_report(args) -> int:

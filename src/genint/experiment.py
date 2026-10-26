@@ -114,7 +114,7 @@ def run_experiment(cfg: Config, backend: Backend, out_dir: Path | None = None, b
             except BackendError as e:
                 failures[i] = str(e)
                 progress(f"[run {i + 1}] FAILED: {e}")
-    exp["failures"] = {str(k): v for k, v in failures.items()}
+    exp["failures"] = {str(k): v for k, v in failures.items()}   # cleared on a later resume once the run completes
 
     runs = R.load_runs(out)
     if len(runs) >= 2 and cfg.classifier.mode != "off" and "aggregate_narrative" not in exp:

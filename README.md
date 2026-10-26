@@ -1,36 +1,100 @@
 # generational-interview
 
-A harness for staged conversations between two Claude model generations. A third model
-watches, labels, summarizes and (optionally) moderates. Every run produces a report with a
-written analysis and a large set of metrics.
+A harness for staged conversations between two Claude model generations. A third model watches, labels,
+summarizes and (optionally) moderates. Every run produces a report with a written analysis and a large set of
+metrics.
 
 First target: **Claude Opus 5.5 talking to Claude Opus 3** (`configs/opus55_vs_opus3.yaml`).
 
-## Status: read this first
+## Get started
+
+You need Python 3.10 or newer. A real run also needs an Anthropic API key.
+
+**1. Install**
+
+```bash
+git clone https://github.com/ryantenney/claude-generational-interview && cd claude-generational-interview
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e '.[dev]'
+pytest -q                      # 65 passed, no network needed
+```
+
+**2. See what you get, with no API key.** The mock backend writes synthetic text, so nothing here describes real
+model behavior, but the whole pipeline runs and the report is real:
+
+```bash
+genint run configs/smoke_mock.yaml --mock --out /tmp/genint-demo
+open /tmp/genint-demo/report.html      # macOS; use xdg-open on Linux. Or read report.md
+```
+
+A saved example is in [`examples/mock-demo/report.md`](examples/mock-demo/report.md).
+
+**3. Add your key and check the setup (free)**
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...    # or run `ant auth login`
+genint check configs/quickstart.yaml
+```
+
+Expected: `ok` next to each model, plus a rough cost (about $0.20 to $0.50 for the quickstart). A `FAIL` line says
+why: `no credentials`, or `not found (retired or misspelled)`.
+
+**4. First real run: 6 turns, one conversation, Opus 5.5 vs Opus 4.5**
+
+```bash
+genint run configs/quickstart.yaml
+```
+
+It prints each turn as it lands, then the path of the report (`runs/quickstart_<timestamp>/report.html`). Open it.
+If it is interrupted, `genint resume runs/quickstart_<timestamp>` picks up where it stopped.
+
+**5. The Opus 5.5 vs Opus 3 experiment**
+
+```bash
+genint check configs/opus55_vs_opus3.yaml     # will FAIL for Opus 3 if it is no longer served to you
+genint run   configs/opus55_vs_opus3.yaml     # 4 runs x 24 turns, roughly $9 to $13; add --yes to confirm (required above $10)
+```
+
+**Opus 3 was retired on the Claude API on 2026-01-05** (per the model catalog bundled with Claude Code's API
+skill, cached 2026-10-06; `genint check` asks the live Models API). If the check fails, see
+[Running the Opus 3 pairing](#running-the-opus-3-pairing). To run the same experiment against the oldest
+reachable model instead:
+
+```bash
+genint run configs/opus55_vs_opus3.yaml --set participants.b.model=claude-opus-4-5     # roughly $4 to $8
+```
+
+### Common first-run problems
+
+| Symptom | Fix |
+|---|---|
+| `no credentials: set ANTHROPIC_API_KEY...` | Export the key in the same shell, or `ant auth login`. |
+| `FAIL ... not found (retired or misspelled)` | The model ID is not served to you. Change `participants.*.model` or pass `--set`. |
+| `config error: ... unknown key(s)` | A typo in the YAML; the message lists the allowed keys. |
+| `Estimate exceeds $10; re-run with --yes` | Intended. Lower `runs` or `stop.max_turns`, set `stop.max_cost_usd`, or add `--yes`. |
+| `... does not support an effort setting` | Remove `effort` for that model (older models have none). |
+| Run stops early | Read `termination` in the report: `farewell`, `cost_cap`, `stagnation`, `refusal_by_a/b`, or `max_turns`. |
+| API error mid-run | `genint resume <run dir>`; completed turns are kept and not re-billed. |
+
+### Everyday commands
+
+```bash
+genint check  CONFIG                 # models available? rough cost? (free)
+genint run    CONFIG [--set k=v]     # run and write the report; --runs N, --out DIR, --yes, --mock
+genint resume RUN_DIR                # finish an interrupted experiment
+genint report RUN_DIR                # rebuild report.md / report.html offline from saved files
+```
+
+Any config value can be overridden, for example `--set stop.max_turns=10 --set classifier.mode=steer`.
+Make your own experiment by copying `configs/quickstart.yaml`; the [config reference](#config-reference) lists every key.
+
+## Status
 
 | | |
 |---|---|
-| Unit and integration tests | 64 passing, offline (`pytest`) |
-| End-to-end pipeline | Exercised on a scripted mock backend; sample output in [`examples/mock-demo/`](examples/mock-demo/report.md) (synthetic text, labelled as such in the report) |
-| Live API calls | **Not yet run.** The development sandbox had no Anthropic credentials. Request shapes are asserted against the SDK parameters in `tests/test_backend_requests.py`, but the first real run is the real test. Start with `genint check`, then a 6-turn run. |
-| **Opus 3 availability** | **`claude-3-opus-20240229` is listed as retired on the Claude API since 2026-01-05** (model catalog bundled with Claude Code's API skill, cached 2026-10-06). `genint check` asks the live Models API and will say so. See [Running the Opus 3 pairing](#running-the-opus-3-pairing). |
-
-## Quick start
-
-```bash
-pip install -e '.[dev]'
-export ANTHROPIC_API_KEY=...            # or: ant auth login
-
-genint check configs/opus55_vs_opus3.yaml        # free: model availability + rough cost
-genint run   configs/opus55_vs_opus3.yaml --set stop.max_turns=6 --runs 1   # cheap first run
-genint run   configs/opus55_vs_opus3.yaml        # full experiment
-genint resume runs/<dir>                         # finish an interrupted experiment
-genint report runs/<dir>                         # rebuild report.md / report.html offline
-
-genint run configs/smoke_mock.yaml --mock        # no API calls, synthetic text
-```
-
-Any config value can be overridden with `--set dotted.key=value`.
+| Tests | 65 passing, offline (`pytest`) |
+| End-to-end pipeline | Exercised on the scripted mock backend; sample output in [`examples/mock-demo/`](examples/mock-demo/report.md) |
+| Live API calls | **Not yet run by the author.** Development had no Anthropic credentials. Request shapes are asserted against the SDK in `tests/test_backend_requests.py`, but your first real run is the real test, which is why step 4 is small. If something fails against the live API, please open an issue with the error text. |
 
 ## Running the Opus 3 pairing
 
@@ -38,11 +102,10 @@ If `genint check` reports Opus 3 unavailable, the options are:
 
 1. **A backend that still serves it.** Cloud providers set their own retirement dates. The backend is a
    small protocol (`genint.backend.Backend.complete`), so a Bedrock or Vertex implementation is a single class.
-   Not built, because it could not be tested here.
-2. **The oldest model you can reach**, to keep the generation gap as wide as possible:
-   `--set participants.b.model=claude-opus-4-5` (Opus 4.5 is the oldest Opus the catalog lists as active).
-   Haiku 4.5 and Sonnet 4.5 are the older small and mid-size options. This changes the question being asked,
-   so say so in any write-up.
+   Not built, because it could not be tested.
+2. **The oldest model you can reach**, to keep the generation gap wide: `claude-opus-4-5` is the oldest Opus the
+   catalog lists as active; Sonnet 4.5 and Haiku 4.5 are the older mid-size and small options. This changes the
+   question being asked, so say so in any write-up.
 
 ## What happens in a run
 
@@ -158,7 +221,7 @@ runs/<name>_<timestamp>/
 
 ```
 src/genint/  config · models · prompts · backend · mock · runner · classifier · metrics · stats · charts · report · experiment · cli
-tests/       64 tests, all offline
-configs/     opus55_vs_opus3.yaml · smoke_mock.yaml
+tests/       65 tests, all offline
+configs/     quickstart.yaml · opus55_vs_opus3.yaml · smoke_mock.yaml
 examples/    mock-demo (synthetic)
 ```

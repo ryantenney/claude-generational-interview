@@ -84,3 +84,19 @@ def test_estimate_cost_scales_with_runs_and_turns():
     one = estimate_cost(make_cfg(runs=1)); two = estimate_cost(make_cfg(runs=2))
     longer = estimate_cost(make_cfg(runs=1, stop={"max_turns": 24}))
     assert two[0] == one[0] * 2 and longer[1] > one[1] > 0 and one[0] < one[1]
+
+
+def test_cli_reports_failed_runs_and_exits_nonzero(tmp_path, monkeypatch, capsys):
+    from genint import cli
+    from genint.backend import BackendError
+
+    class Down:
+        def complete(self, req):
+            raise BackendError("authentication failed")
+    monkeypatch.setattr(cli, "_backend", lambda args: (Down(), "anthropic", "test"))
+    cfg = tmp_path / "c.yaml"
+    cfg.write_text("name: x\nparticipants: {a: {model: claude-opus-5-5}, b: {model: claude-opus-4-5}}\nstop: {max_turns: 4}\n")
+    code = cli.main(["run", str(cfg), "--no-check", "--out", str(tmp_path / "out")])
+    err = capsys.readouterr().err
+    assert code == 1 and "1 run(s) failed" in err and "genint resume" in err and "authentication failed" in err
+    assert not (tmp_path / "out" / "report.md").exists()
