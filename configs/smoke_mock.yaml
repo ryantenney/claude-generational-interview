@@ -1,0 +1,11 @@
+# Offline smoke test: run with --mock. Output is synthetic.
+name: smoke
+participants:
+  a: {model: claude-opus-5-5, effort: medium}
+  b: {model: claude-3-opus-20240229, max_tokens: 1024}
+seed: {topic: "how habits form"}
+first_speaker: alternate
+runs: 2
+stop: {max_turns: 12}
+classifier: {model: claude-opus-5-5, mode: steer, window: 4}
+output_dir: runs

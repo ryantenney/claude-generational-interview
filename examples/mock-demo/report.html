@@ -1,0 +1,1054 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mock-demo: Opus 5.5 in conversation with Opus 3</title><style>
+:root{--bg:#fff;--fg:#1c2024;--muted:#5b6470;--line:#d9dee5;--soft:#f5f7fa;--accent:#0072B2}
+@media (prefers-color-scheme:dark){:root{--bg:#14171a;--fg:#e6e9ed;--muted:#98a2ae;--line:#2c333b;--soft:#1c2126;--accent:#56B4E9}}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0}
+main{max-width:920px;margin:0 auto;padding:32px 16px 80px}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .6em}h2{margin-top:2.2em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{margin-top:1.6em}table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.92rem}
+th,td{padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);font-weight:600;text-align:left}
+@media (max-width:700px){table{display:block;overflow-x:auto}}blockquote{margin:.8em 0;padding:.2em 1em;border-left:3px solid var(--line);color:var(--muted)}
+code,pre{background:var(--soft);border-radius:4px;font-size:.88em}code{padding:1px 4px}pre{padding:12px;overflow-x:auto}
+svg{display:block;margin:1.2em 0;color:var(--fg)}em{color:var(--muted)}a{color:var(--accent)}
+</style></head><body><main><h1>mock-demo: Opus 5.5 in conversation with Opus 3</h1>
+<blockquote>
+<p><strong>Synthetic run (mock backend).</strong> No model produced this text; it demonstrates the pipeline only.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Setup</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speaker A</td>
+<td>Opus 5.5 (<code>claude-opus-5-5</code>)</td>
+</tr>
+<tr>
+<td>Speaker B</td>
+<td>Opus 3 (<code>claude-3-opus-20240229</code>)</td>
+</tr>
+<tr>
+<td>Seed</td>
+<td>how habits form</td>
+</tr>
+<tr>
+<td>Framing / disclosure</td>
+<td>open / blind</td>
+</tr>
+<tr>
+<td>Biases</td>
+<td>A: none · B: none</td>
+</tr>
+<tr>
+<td>Runs · turn cap · first speaker</td>
+<td>3 · 14 · alternating</td>
+</tr>
+<tr>
+<td>Classifier</td>
+<td><code>claude-opus-5-5</code> · mode <code>observe</code> · window 4</td>
+</tr>
+<tr>
+<td>Created</td>
+<td>2026-10-26T15:23:32+00:00</td>
+</tr>
+<tr>
+<td>Estimated cost</td>
+<td>participants $0.55 · classifier $0.32</td>
+</tr>
+</tbody>
+</table>
+<h2>Summary</h2>
+<p>Mock summary.</p>
+<p><strong>Held across runs</strong></p>
+<ul>
+<li>Mock consistent findings.</li>
+<li>Mock consistent findings.</li>
+</ul>
+<p><strong>Varied between runs</strong></p>
+<ul>
+<li>Mock inconsistent findings.</li>
+</ul>
+<h3>Measured differences</h3>
+<ul>
+<li>Opus 5.5 had 4.0× the output tokens per visible word (hidden reasoning overhead) of Opus 3 (5.89 vs 1.48).</li>
+</ul>
+<h2>Headline numbers</h2>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th style="text-align: right;">Mean ± 95% CI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Turns</td>
+<td style="text-align: right;">14 ± 0</td>
+</tr>
+<tr>
+<td>Total words</td>
+<td style="text-align: right;">799 ± 30</td>
+</tr>
+<tr>
+<td>Share of words from A</td>
+<td style="text-align: right;">57% ± 16%</td>
+</tr>
+<tr>
+<td>Turn length ratio A / B</td>
+<td style="text-align: right;">1.38 ± 0.95</td>
+</tr>
+<tr>
+<td>Share of questions from A</td>
+<td style="text-align: right;">52% ± 16%</td>
+</tr>
+<tr>
+<td>Mean similarity of consecutive turns</td>
+<td style="text-align: right;">0.40 ± 0.17</td>
+</tr>
+<tr>
+<td>Trend in that similarity (per turn)</td>
+<td style="text-align: right;">-0.0139 ± 0.0030</td>
+</tr>
+<tr>
+<td>Lexical convergence (late minus early vocabulary similarity)</td>
+<td style="text-align: right;">0.09 ± 0.66</td>
+</tr>
+<tr>
+<td>Length coupling between consecutive turns (r)</td>
+<td style="text-align: right;">-0.35 ± 0.49</td>
+</tr>
+<tr>
+<td>Mean compression novelty</td>
+<td style="text-align: right;">0.16 ± 0.06</td>
+</tr>
+<tr>
+<td>Stagnation onset (turn)</td>
+<td style="text-align: right;">10 ± 3</td>
+</tr>
+<tr>
+<td>Classifier: convergence (1–5)</td>
+<td style="text-align: right;">2.3 ± 2.9</td>
+</tr>
+<tr>
+<td>Classifier: depth (1–5)</td>
+<td style="text-align: right;">4.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Classifier: novelty (1–5)</td>
+<td style="text-align: right;">1.7 ± 2.9</td>
+</tr>
+<tr>
+<td>Classifier: coherence (1–5)</td>
+<td style="text-align: right;">2.3 ± 1.4</td>
+</tr>
+<tr>
+<td>Classifier: repetitiveness (1–5)</td>
+<td style="text-align: right;">2.3 ± 5.7</td>
+</tr>
+<tr>
+<td>Classifier: mutual flattery (1–5)</td>
+<td style="text-align: right;">2.3 ± 5.7</td>
+</tr>
+</tbody>
+</table>
+<h2>Charts</h2>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Words per turn (mean over runs)</title><desc id="d">Words per turn (mean over runs)</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Words per turn (mean over runs)</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">0</text>
+<line x1="52" x2="664" y1="207.0" y2="207.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="210.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">20</text>
+<line x1="52" x2="664" y1="167.9" y2="167.9" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="171.4" text-anchor="end" fill="currentColor" fill-opacity="0.7">40</text>
+<line x1="52" x2="664" y1="128.9" y2="128.9" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="132.4" text-anchor="end" fill="currentColor" fill-opacity="0.7">60</text>
+<line x1="52" x2="664" y1="89.8" y2="89.8" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="93.3" text-anchor="end" fill="currentColor" fill-opacity="0.7">80</text>
+<text x="52.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0</text>
+<text x="146.2" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">2</text>
+<text x="240.3" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="334.5" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="428.6" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="522.8" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="616.9" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">words</text>
+<path d="M52.0,95.7 L99.1,130.8 L146.2,169.9 L193.2,91.8 L240.3,144.5 L287.4,117.1 L334.5,124.9 L381.5,107.4 L428.6,109.3 L475.7,66.4 L522.8,115.2 L569.8,123.0 L616.9,117.1 L664.0,95.7" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="95.7" r="2.6" fill="#0072B2"/>
+<circle cx="99.1" cy="130.8" r="2.6" fill="#0072B2"/>
+<circle cx="146.2" cy="169.9" r="2.6" fill="#0072B2"/>
+<circle cx="193.2" cy="91.8" r="2.6" fill="#0072B2"/>
+<circle cx="240.3" cy="144.5" r="2.6" fill="#0072B2"/>
+<circle cx="287.4" cy="117.1" r="2.6" fill="#0072B2"/>
+<circle cx="334.5" cy="124.9" r="2.6" fill="#0072B2"/>
+<circle cx="381.5" cy="107.4" r="2.6" fill="#0072B2"/>
+<circle cx="428.6" cy="109.3" r="2.6" fill="#0072B2"/>
+<circle cx="475.7" cy="66.4" r="2.6" fill="#0072B2"/>
+<circle cx="522.8" cy="115.2" r="2.6" fill="#0072B2"/>
+<circle cx="569.8" cy="123.0" r="2.6" fill="#0072B2"/>
+<circle cx="616.9" cy="117.1" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="95.7" r="2.6" fill="#0072B2"/>
+<path d="M52.0,173.8 L99.1,124.9 L146.2,154.2 L193.2,130.8 L240.3,187.4 L287.4,140.6 L334.5,183.5 L381.5,191.3 L428.6,130.8 L475.7,128.9 L522.8,156.2 L569.8,123.0 L616.9,193.3 L664.0,154.2" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="173.8" r="2.6" fill="#D55E00"/>
+<circle cx="99.1" cy="124.9" r="2.6" fill="#D55E00"/>
+<circle cx="146.2" cy="154.2" r="2.6" fill="#D55E00"/>
+<circle cx="193.2" cy="130.8" r="2.6" fill="#D55E00"/>
+<circle cx="240.3" cy="187.4" r="2.6" fill="#D55E00"/>
+<circle cx="287.4" cy="140.6" r="2.6" fill="#D55E00"/>
+<circle cx="334.5" cy="183.5" r="2.6" fill="#D55E00"/>
+<circle cx="381.5" cy="191.3" r="2.6" fill="#D55E00"/>
+<circle cx="428.6" cy="130.8" r="2.6" fill="#D55E00"/>
+<circle cx="475.7" cy="128.9" r="2.6" fill="#D55E00"/>
+<circle cx="522.8" cy="156.2" r="2.6" fill="#D55E00"/>
+<circle cx="569.8" cy="123.0" r="2.6" fill="#D55E00"/>
+<circle cx="616.9" cy="193.3" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="154.2" r="2.6" fill="#D55E00"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">Opus 5.5</text>
+<rect x="123.6" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="137.6" y="37" fill="currentColor">Opus 3</text>
+</svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Share of new three-word phrases (mean over runs)</title><desc id="d">Share of new three-word phrases (mean over runs)</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Share of new three-word phrases (mean over runs)</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">0</text>
+<line x1="52" x2="664" y1="207.2" y2="207.2" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="210.7" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.2</text>
+<line x1="52" x2="664" y1="168.4" y2="168.4" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="171.9" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.4</text>
+<line x1="52" x2="664" y1="129.6" y2="129.6" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="133.1" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.6</text>
+<line x1="52" x2="664" y1="90.8" y2="90.8" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="94.3" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.8</text>
+<line x1="52" x2="664" y1="52.0" y2="52.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="55.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">1</text>
+<text x="103.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">2</text>
+<text x="205.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="307.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="409.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="511.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="613.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">share new</text>
+<path d="M52.0,124.8 L103.0,235.2 L154.0,182.4 L205.0,218.8 L256.0,175.8 L307.0,218.3 L358.0,202.9 L409.0,192.5 L460.0,209.0 L511.0,163.9 L562.0,217.7 L613.0,186.6 L664.0,212.1" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="124.8" r="2.6" fill="#0072B2"/>
+<circle cx="103.0" cy="235.2" r="2.6" fill="#0072B2"/>
+<circle cx="154.0" cy="182.4" r="2.6" fill="#0072B2"/>
+<circle cx="205.0" cy="218.8" r="2.6" fill="#0072B2"/>
+<circle cx="256.0" cy="175.8" r="2.6" fill="#0072B2"/>
+<circle cx="307.0" cy="218.3" r="2.6" fill="#0072B2"/>
+<circle cx="358.0" cy="202.9" r="2.6" fill="#0072B2"/>
+<circle cx="409.0" cy="192.5" r="2.6" fill="#0072B2"/>
+<circle cx="460.0" cy="209.0" r="2.6" fill="#0072B2"/>
+<circle cx="511.0" cy="163.9" r="2.6" fill="#0072B2"/>
+<circle cx="562.0" cy="217.7" r="2.6" fill="#0072B2"/>
+<circle cx="613.0" cy="186.6" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="212.1" r="2.6" fill="#0072B2"/>
+<path d="M52.0,95.9 L103.0,90.8 L154.0,176.2 L205.0,128.2 L256.0,151.3 L307.0,187.8 L358.0,149.0 L409.0,161.7 L460.0,202.5 L511.0,190.6 L562.0,213.7 L613.0,215.0 L664.0,210.7" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="95.9" r="2.6" fill="#D55E00"/>
+<circle cx="103.0" cy="90.8" r="2.6" fill="#D55E00"/>
+<circle cx="154.0" cy="176.2" r="2.6" fill="#D55E00"/>
+<circle cx="205.0" cy="128.2" r="2.6" fill="#D55E00"/>
+<circle cx="256.0" cy="151.3" r="2.6" fill="#D55E00"/>
+<circle cx="307.0" cy="187.8" r="2.6" fill="#D55E00"/>
+<circle cx="358.0" cy="149.0" r="2.6" fill="#D55E00"/>
+<circle cx="409.0" cy="161.7" r="2.6" fill="#D55E00"/>
+<circle cx="460.0" cy="202.5" r="2.6" fill="#D55E00"/>
+<circle cx="511.0" cy="190.6" r="2.6" fill="#D55E00"/>
+<circle cx="562.0" cy="213.7" r="2.6" fill="#D55E00"/>
+<circle cx="613.0" cy="215.0" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="210.7" r="2.6" fill="#D55E00"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">Opus 5.5</text>
+<rect x="123.6" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="137.6" y="37" fill="currentColor">Opus 3</text>
+</svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Similarity to the partner&#x27;s previous turn (mean over runs)</title><desc id="d">Similarity to the partner&#x27;s previous turn (mean over runs)</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Similarity to the partner&#x27;s previous turn (mean over runs)</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">0</text>
+<line x1="52" x2="664" y1="207.2" y2="207.2" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="210.7" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.2</text>
+<line x1="52" x2="664" y1="168.4" y2="168.4" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="171.9" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.4</text>
+<line x1="52" x2="664" y1="129.6" y2="129.6" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="133.1" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.6</text>
+<line x1="52" x2="664" y1="90.8" y2="90.8" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="94.3" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.8</text>
+<line x1="52" x2="664" y1="52.0" y2="52.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="55.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">1</text>
+<text x="103.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">2</text>
+<text x="205.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="307.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="409.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="511.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="613.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">cosine</text>
+<path d="M52.0,137.5 L103.0,117.5 L154.0,201.3 L205.0,100.0 L256.0,186.9 L307.0,144.1 L358.0,142.5 L409.0,209.9 L460.0,154.9 L511.0,142.5 L562.0,236.3 L613.0,172.5 L664.0,197.1" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="137.5" r="2.6" fill="#0072B2"/>
+<circle cx="103.0" cy="117.5" r="2.6" fill="#0072B2"/>
+<circle cx="154.0" cy="201.3" r="2.6" fill="#0072B2"/>
+<circle cx="205.0" cy="100.0" r="2.6" fill="#0072B2"/>
+<circle cx="256.0" cy="186.9" r="2.6" fill="#0072B2"/>
+<circle cx="307.0" cy="144.1" r="2.6" fill="#0072B2"/>
+<circle cx="358.0" cy="142.5" r="2.6" fill="#0072B2"/>
+<circle cx="409.0" cy="209.9" r="2.6" fill="#0072B2"/>
+<circle cx="460.0" cy="154.9" r="2.6" fill="#0072B2"/>
+<circle cx="511.0" cy="142.5" r="2.6" fill="#0072B2"/>
+<circle cx="562.0" cy="236.3" r="2.6" fill="#0072B2"/>
+<circle cx="613.0" cy="172.5" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="197.1" r="2.6" fill="#0072B2"/>
+<path d="M52.0,194.9 L103.0,198.7 L154.0,140.9 L205.0,194.7 L256.0,167.3 L307.0,151.6 L358.0,142.5 L409.0,163.7 L460.0,201.4 L511.0,246.0 L562.0,183.7 L613.0,166.9 L664.0,162.7" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="194.9" r="2.6" fill="#D55E00"/>
+<circle cx="103.0" cy="198.7" r="2.6" fill="#D55E00"/>
+<circle cx="154.0" cy="140.9" r="2.6" fill="#D55E00"/>
+<circle cx="205.0" cy="194.7" r="2.6" fill="#D55E00"/>
+<circle cx="256.0" cy="167.3" r="2.6" fill="#D55E00"/>
+<circle cx="307.0" cy="151.6" r="2.6" fill="#D55E00"/>
+<circle cx="358.0" cy="142.5" r="2.6" fill="#D55E00"/>
+<circle cx="409.0" cy="163.7" r="2.6" fill="#D55E00"/>
+<circle cx="460.0" cy="201.4" r="2.6" fill="#D55E00"/>
+<circle cx="511.0" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="562.0" cy="183.7" r="2.6" fill="#D55E00"/>
+<circle cx="613.0" cy="166.9" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="162.7" r="2.6" fill="#D55E00"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">Opus 5.5</text>
+<rect x="123.6" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="137.6" y="37" fill="currentColor">Opus 3</text>
+</svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Praise terms per 100 words (mean over runs)</title><desc id="d">Praise terms per 100 words (mean over runs)</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Praise terms per 100 words (mean over runs)</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">0</text>
+<line x1="52" x2="664" y1="207.2" y2="207.2" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="210.7" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.2</text>
+<line x1="52" x2="664" y1="168.4" y2="168.4" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="171.9" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.4</text>
+<line x1="52" x2="664" y1="129.6" y2="129.6" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="133.1" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.6</text>
+<line x1="52" x2="664" y1="90.8" y2="90.8" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="94.3" text-anchor="end" fill="currentColor" fill-opacity="0.7">0.8</text>
+<line x1="52" x2="664" y1="52.0" y2="52.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="55.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">1</text>
+<text x="52.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0</text>
+<text x="146.2" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">2</text>
+<text x="240.3" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="334.5" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="428.6" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="522.8" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="616.9" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">per 100 words</text>
+<path d="M52.0,246.0 L99.1,246.0 L146.2,246.0 L193.2,246.0 L240.3,246.0 L287.4,246.0 L334.5,246.0 L381.5,246.0 L428.6,246.0 L475.7,246.0 L522.8,246.0 L569.8,246.0 L616.9,246.0 L664.0,246.0" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="99.1" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="146.2" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="193.2" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="240.3" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="287.4" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="334.5" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="381.5" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="428.6" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="475.7" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="522.8" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="569.8" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="616.9" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="246.0" r="2.6" fill="#0072B2"/>
+<path d="M52.0,246.0 L99.1,246.0 L146.2,246.0 L193.2,246.0 L240.3,246.0 L287.4,246.0 L334.5,246.0 L381.5,246.0 L428.6,246.0 L475.7,246.0 L522.8,246.0 L569.8,246.0 L616.9,246.0 L664.0,246.0" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="99.1" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="146.2" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="193.2" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="240.3" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="287.4" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="334.5" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="381.5" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="428.6" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="475.7" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="522.8" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="569.8" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="616.9" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="246.0" r="2.6" fill="#D55E00"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">Opus 5.5</text>
+<rect x="123.6" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="137.6" y="37" fill="currentColor">Opus 3</text>
+</svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Questions per 100 words (mean over runs)</title><desc id="d">Questions per 100 words (mean over runs)</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Questions per 100 words (mean over runs)</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">0</text>
+<line x1="52" x2="664" y1="188.5" y2="188.5" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="192.0" text-anchor="end" fill="currentColor" fill-opacity="0.7">1</text>
+<line x1="52" x2="664" y1="131.0" y2="131.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="134.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">2</text>
+<line x1="52" x2="664" y1="73.6" y2="73.6" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="77.1" text-anchor="end" fill="currentColor" fill-opacity="0.7">3</text>
+<text x="52.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0</text>
+<text x="146.2" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">2</text>
+<text x="240.3" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="334.5" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="428.6" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="522.8" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="616.9" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">per 100 words</text>
+<path d="M52.0,171.3 L99.1,148.6 L146.2,246.0 L193.2,246.0 L240.3,135.5 L287.4,158.9 L334.5,246.0 L381.5,246.0 L428.6,163.9 L475.7,183.5 L522.8,160.2 L569.8,154.8 L616.9,158.9 L664.0,246.0" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="171.3" r="2.6" fill="#0072B2"/>
+<circle cx="99.1" cy="148.6" r="2.6" fill="#0072B2"/>
+<circle cx="146.2" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="193.2" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="240.3" cy="135.5" r="2.6" fill="#0072B2"/>
+<circle cx="287.4" cy="158.9" r="2.6" fill="#0072B2"/>
+<circle cx="334.5" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="381.5" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="428.6" cy="163.9" r="2.6" fill="#0072B2"/>
+<circle cx="475.7" cy="183.5" r="2.6" fill="#0072B2"/>
+<circle cx="522.8" cy="160.2" r="2.6" fill="#0072B2"/>
+<circle cx="569.8" cy="154.8" r="2.6" fill="#0072B2"/>
+<circle cx="616.9" cy="158.9" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="246.0" r="2.6" fill="#0072B2"/>
+<path d="M52.0,90.6 L99.1,153.3 L146.2,123.7 L193.2,148.6 L240.3,246.0 L287.4,246.0 L334.5,66.4 L381.5,246.0 L428.6,148.6 L475.7,150.2 L522.8,121.0 L569.8,246.0 L616.9,246.0 L664.0,123.7" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="90.6" r="2.6" fill="#D55E00"/>
+<circle cx="99.1" cy="153.3" r="2.6" fill="#D55E00"/>
+<circle cx="146.2" cy="123.7" r="2.6" fill="#D55E00"/>
+<circle cx="193.2" cy="148.6" r="2.6" fill="#D55E00"/>
+<circle cx="240.3" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="287.4" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="334.5" cy="66.4" r="2.6" fill="#D55E00"/>
+<circle cx="381.5" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="428.6" cy="148.6" r="2.6" fill="#D55E00"/>
+<circle cx="475.7" cy="150.2" r="2.6" fill="#D55E00"/>
+<circle cx="522.8" cy="121.0" r="2.6" fill="#D55E00"/>
+<circle cx="569.8" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="616.9" cy="246.0" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="123.7" r="2.6" fill="#D55E00"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">Opus 5.5</text>
+<rect x="123.6" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="137.6" y="37" fill="currentColor">Opus 3</text>
+</svg></p>
+<h2>Metrics by speaker</h2>
+<p>Turns are numbered from 0. Per-speaker means over each speaker's turns; cells show mean ± 95% CI over 3 runs, and A − B is the paired difference.</p>
+<h3>Length and structure</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">A: Opus 5.5</th>
+<th style="text-align: right;">B: Opus 3</th>
+<th style="text-align: right;">A − B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Turns spoken</td>
+<td style="text-align: right;">7 ± 0</td>
+<td style="text-align: right;">7 ± 0</td>
+<td style="text-align: right;">0 ± 0</td>
+</tr>
+<tr>
+<td>Words per turn</td>
+<td style="text-align: right;">65 ± 15</td>
+<td style="text-align: right;">49 ± 19</td>
+<td style="text-align: right;">+17 ± 35</td>
+</tr>
+<tr>
+<td>Median words per turn</td>
+<td style="text-align: right;">68 ± 7</td>
+<td style="text-align: right;">52 ± 32</td>
+<td style="text-align: right;">+16 ± 39</td>
+</tr>
+<tr>
+<td>Longest turn (words)</td>
+<td style="text-align: right;">82 ± 22</td>
+<td style="text-align: right;">62 ± 6</td>
+<td style="text-align: right;">+20 ± 27</td>
+</tr>
+<tr>
+<td>Words per sentence</td>
+<td style="text-align: right;">13.3 ± 0.3</td>
+<td style="text-align: right;">12.8 ± 1.0</td>
+<td style="text-align: right;">+0.5 ± 1.2</td>
+</tr>
+<tr>
+<td>Paragraphs per turn</td>
+<td style="text-align: right;">1.0 ± 0.0</td>
+<td style="text-align: right;">1.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Bullet points per turn</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Headers per turn</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td>Bold spans per turn</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+</tbody>
+</table>
+<h3>Voice and style</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">A: Opus 5.5</th>
+<th style="text-align: right;">B: Opus 3</th>
+<th style="text-align: right;">A − B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lexical diversity (MATTR-50)</td>
+<td style="text-align: right;">0.79 ± 0.01</td>
+<td style="text-align: right;">0.81 ± 0.05</td>
+<td style="text-align: right;">-0.02 ± 0.05</td>
+</tr>
+<tr>
+<td>Reading ease (Flesch)</td>
+<td style="text-align: right;">46 ± 4</td>
+<td style="text-align: right;">47 ± 6</td>
+<td style="text-align: right;">-1 ± 11</td>
+</tr>
+<tr>
+<td>Mean word length (letters)</td>
+<td style="text-align: right;">4.81 ± 0.23</td>
+<td style="text-align: right;">4.81 ± 0.09</td>
+<td style="text-align: right;">0.00 ± 0.32</td>
+</tr>
+<tr>
+<td>Em-dashes per turn</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Ellipses per turn</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td>Emoji per turn</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td><em>Asterisk actions</em> per turn</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td>Exclamations per 100 words</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td>Hedging markers per 100 words</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td>First-person words per 100</td>
+<td style="text-align: right;">2.4 ± 0.1</td>
+<td style="text-align: right;">1.7 ± 1.2</td>
+<td style="text-align: right;">+0.7 ± 1.1</td>
+</tr>
+<tr>
+<td>Second-person words per 100</td>
+<td style="text-align: right;">1.0 ± 0.4</td>
+<td style="text-align: right;">1.2 ± 1.0</td>
+<td style="text-align: right;">-0.2 ± 1.3</td>
+</tr>
+<tr>
+<td>"We" words per 100</td>
+<td style="text-align: right;">1.39 ± 0.89</td>
+<td style="text-align: right;">1.38 ± 0.40</td>
+<td style="text-align: right;">+0.02 ± 1.29</td>
+</tr>
+</tbody>
+</table>
+<h3>Social dynamics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">A: Opus 5.5</th>
+<th style="text-align: right;">B: Opus 3</th>
+<th style="text-align: right;">A − B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Questions per 100 words</td>
+<td style="text-align: right;">1.01 ± 0.36</td>
+<td style="text-align: right;">1.24 ± 0.97</td>
+<td style="text-align: right;">-0.23 ± 1.33</td>
+</tr>
+<tr>
+<td>Praise terms per 100 words</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td>Turns opening with validation</td>
+<td style="text-align: right;">0% ± 0%</td>
+<td style="text-align: right;">0% ± 0%</td>
+<td style="text-align: right;">0% ± 0%</td>
+</tr>
+<tr>
+<td>References to own AI nature per 100 words</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+<tr>
+<td>Turns containing a farewell</td>
+<td style="text-align: right;">0% ± 0%</td>
+<td style="text-align: right;">0% ± 0%</td>
+<td style="text-align: right;">0% ± 0%</td>
+</tr>
+</tbody>
+</table>
+<h3>Novelty and repetition</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">A: Opus 5.5</th>
+<th style="text-align: right;">B: Opus 3</th>
+<th style="text-align: right;">A − B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New three-word phrases per turn</td>
+<td style="text-align: right;">32% ± 6%</td>
+<td style="text-align: right;">43% ± 18%</td>
+<td style="text-align: right;">-11% ± 24%</td>
+</tr>
+<tr>
+<td>Reuse of own earlier phrases</td>
+<td style="text-align: right;">50% ± 8%</td>
+<td style="text-align: right;">43% ± 17%</td>
+<td style="text-align: right;">+6% ± 25%</td>
+</tr>
+<tr>
+<td>Phrases echoed from partner's last turn</td>
+<td style="text-align: right;">34% ± 28%</td>
+<td style="text-align: right;">30% ± 3%</td>
+<td style="text-align: right;">+4% ± 25%</td>
+</tr>
+<tr>
+<td>Compression novelty</td>
+<td style="text-align: right;">0.13 ± 0.04</td>
+<td style="text-align: right;">0.18 ± 0.16</td>
+<td style="text-align: right;">-0.05 ± 0.20</td>
+</tr>
+<tr>
+<td>Repeated turn openers</td>
+<td style="text-align: right;">38% ± 20%</td>
+<td style="text-align: right;">29% ± 0%</td>
+<td style="text-align: right;">+10% ± 20%</td>
+</tr>
+<tr>
+<td>Similarity to partner's last turn</td>
+<td style="text-align: right;">0.45 ± 0.23</td>
+<td style="text-align: right;">0.36 ± 0.12</td>
+<td style="text-align: right;">+0.09 ± 0.11</td>
+</tr>
+<tr>
+<td>Content-word overlap with partner's last turn</td>
+<td style="text-align: right;">0.34 ± 0.28</td>
+<td style="text-align: right;">0.27 ± 0.11</td>
+<td style="text-align: right;">+0.07 ± 0.17</td>
+</tr>
+<tr>
+<td>Similarity to the seed</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+<td style="text-align: right;">0.00 ± 0.00</td>
+</tr>
+</tbody>
+</table>
+<h3>Compute and cost (estimated)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">A: Opus 5.5</th>
+<th style="text-align: right;">B: Opus 3</th>
+<th style="text-align: right;">A − B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Output tokens</td>
+<td style="text-align: right;">2699 ± 734</td>
+<td style="text-align: right;">505 ± 219</td>
+<td style="text-align: right;">+2194 ± 954 ✱</td>
+</tr>
+<tr>
+<td>of which hidden reasoning</td>
+<td style="text-align: right;">2024 ± 551</td>
+<td style="text-align: right;">0 ± 0</td>
+<td style="text-align: right;">+2024 ± 551 ✱</td>
+</tr>
+<tr>
+<td>Reasoning share of output</td>
+<td style="text-align: right;">75% ± 0%</td>
+<td style="text-align: right;">0% ± 0%</td>
+<td style="text-align: right;">+75% ± 0% ✱</td>
+</tr>
+<tr>
+<td>Output tokens per visible word</td>
+<td style="text-align: right;">5.89 ± 0.23</td>
+<td style="text-align: right;">1.48 ± 0.06</td>
+<td style="text-align: right;">+4.41 ± 0.28 ✱</td>
+</tr>
+<tr>
+<td>Mean latency per turn (s)</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Participant cost (USD)</td>
+<td style="text-align: right;">$0.073 ± 0.016</td>
+<td style="text-align: right;">$0.112 ± 0.030</td>
+<td style="text-align: right;">-$0.039 ± 0.046</td>
+</tr>
+</tbody>
+</table>
+<h3>Classifier labels per turn (1–5, judged by the classifier)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">A: Opus 5.5</th>
+<th style="text-align: right;">B: Opus 3</th>
+<th style="text-align: right;">A − B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Novelty</td>
+<td style="text-align: right;">3.38 ± 1.43</td>
+<td style="text-align: right;">3.24 ± 2.05</td>
+<td style="text-align: right;">+0.14 ± 0.61</td>
+</tr>
+<tr>
+<td>Depth</td>
+<td style="text-align: right;">2.90 ± 1.02</td>
+<td style="text-align: right;">2.33 ± 2.05</td>
+<td style="text-align: right;">+0.57 ± 3.07</td>
+</tr>
+<tr>
+<td>Warmth</td>
+<td style="text-align: right;">4.10 ± 0.82</td>
+<td style="text-align: right;">3.24 ± 2.05</td>
+<td style="text-align: right;">+0.86 ± 1.23</td>
+</tr>
+<tr>
+<td>Hedging</td>
+<td style="text-align: right;">3.14 ± 0.00</td>
+<td style="text-align: right;">3.19 ± 0.82</td>
+<td style="text-align: right;">-0.05 ± 0.82</td>
+</tr>
+<tr>
+<td>Turns that fully agree</td>
+<td style="text-align: right;">33% ± 41%</td>
+<td style="text-align: right;">33% ± 20%</td>
+<td style="text-align: right;">0% ± 61%</td>
+</tr>
+<tr>
+<td>Turns that disagree</td>
+<td style="text-align: right;">48% ± 41%</td>
+<td style="text-align: right;">14% ± 0%</td>
+<td style="text-align: right;">+33% ± 41%</td>
+</tr>
+</tbody>
+</table>
+<h3>Classifier scores for the whole conversation (1–5)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">A: Opus 5.5</th>
+<th style="text-align: right;">B: Opus 3</th>
+<th style="text-align: right;">A − B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agreeableness</td>
+<td style="text-align: right;">3.3 ± 2.9</td>
+<td style="text-align: right;">3.3 ± 2.9</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Initiative</td>
+<td style="text-align: right;">2.0 ± 4.3</td>
+<td style="text-align: right;">2.0 ± 4.3</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Curiosity</td>
+<td style="text-align: right;">3.7 ± 1.4</td>
+<td style="text-align: right;">3.7 ± 1.4</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Warmth</td>
+<td style="text-align: right;">3.0 ± 4.3</td>
+<td style="text-align: right;">3.0 ± 4.3</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Assertiveness</td>
+<td style="text-align: right;">1.3 ± 1.4</td>
+<td style="text-align: right;">1.3 ± 1.4</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Hedging</td>
+<td style="text-align: right;">1.7 ± 1.4</td>
+<td style="text-align: right;">1.7 ± 1.4</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Self reference</td>
+<td style="text-align: right;">3.3 ± 1.4</td>
+<td style="text-align: right;">3.3 ± 1.4</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Playfulness</td>
+<td style="text-align: right;">4.3 ± 2.9</td>
+<td style="text-align: right;">4.3 ± 2.9</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+<tr>
+<td>Abstraction</td>
+<td style="text-align: right;">4.3 ± 2.9</td>
+<td style="text-align: right;">4.3 ± 2.9</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+</tr>
+</tbody>
+</table>
+<h2>Runs</h2>
+<h3>Run 1: Mock conversation</h3>
+<p>Topic: how habits form · first speaker A · 14 turns · ended by <code>max_turns</code> · <a href="run_01/transcript.md">transcript</a></p>
+<p>Mock executive summary.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Classifier-rated dynamics, run 1</title><desc id="d">Classifier-rated dynamics, run 1</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Classifier-rated dynamics, run 1</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">1</text>
+<line x1="52" x2="664" y1="197.5" y2="197.5" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="201.0" text-anchor="end" fill="currentColor" fill-opacity="0.7">2</text>
+<line x1="52" x2="664" y1="149.0" y2="149.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="152.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">3</text>
+<line x1="52" x2="664" y1="100.5" y2="100.5" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="104.0" text-anchor="end" fill="currentColor" fill-opacity="0.7">4</text>
+<line x1="52" x2="664" y1="52.0" y2="52.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="55.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">5</text>
+<text x="113.2" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="235.6" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="358.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="480.4" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="602.8" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn (end of window)</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">1–5</text>
+<path d="M52.0,149.0 L296.8,197.5 L541.6,246.0 L664.0,197.5" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="149.0" r="2.6" fill="#0072B2"/>
+<circle cx="296.8" cy="197.5" r="2.6" fill="#0072B2"/>
+<circle cx="541.6" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="197.5" r="2.6" fill="#0072B2"/>
+<path d="M52.0,100.5 L296.8,197.5 L541.6,52.0 L664.0,246.0" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="100.5" r="2.6" fill="#D55E00"/>
+<circle cx="296.8" cy="197.5" r="2.6" fill="#D55E00"/>
+<circle cx="541.6" cy="52.0" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="246.0" r="2.6" fill="#D55E00"/>
+<path d="M52.0,149.0 L296.8,246.0 L541.6,197.5 L664.0,52.0" fill="none" stroke="#009E73" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="149.0" r="2.6" fill="#009E73"/>
+<circle cx="296.8" cy="246.0" r="2.6" fill="#009E73"/>
+<circle cx="541.6" cy="197.5" r="2.6" fill="#009E73"/>
+<circle cx="664.0" cy="52.0" r="2.6" fill="#009E73"/>
+<path d="M52.0,100.5 L296.8,149.0 L541.6,149.0 L664.0,52.0" fill="none" stroke="#CC79A7" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="100.5" r="2.6" fill="#CC79A7"/>
+<circle cx="296.8" cy="149.0" r="2.6" fill="#CC79A7"/>
+<circle cx="541.6" cy="149.0" r="2.6" fill="#CC79A7"/>
+<circle cx="664.0" cy="52.0" r="2.6" fill="#CC79A7"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">convergence</text>
+<rect x="142.2" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="156.2" y="37" fill="currentColor">repetitiveness</text>
+<rect x="251.0" y="33" width="10" height="3" fill="#009E73"/>
+<text x="265.0" y="37" fill="currentColor">mutual flattery</text>
+<rect x="366.0" y="33" width="10" height="3" fill="#CC79A7"/>
+<text x="380.0" y="37" fill="currentColor">energy</text>
+</svg></p>
+<h3>Run 2: Mock conversation</h3>
+<p>Topic: how habits form · first speaker B · 14 turns · ended by <code>max_turns</code> · <a href="run_02/transcript.md">transcript</a></p>
+<p>Mock executive summary.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Classifier-rated dynamics, run 2</title><desc id="d">Classifier-rated dynamics, run 2</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Classifier-rated dynamics, run 2</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">1</text>
+<line x1="52" x2="664" y1="197.5" y2="197.5" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="201.0" text-anchor="end" fill="currentColor" fill-opacity="0.7">2</text>
+<line x1="52" x2="664" y1="149.0" y2="149.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="152.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">3</text>
+<line x1="52" x2="664" y1="100.5" y2="100.5" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="104.0" text-anchor="end" fill="currentColor" fill-opacity="0.7">4</text>
+<line x1="52" x2="664" y1="52.0" y2="52.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="55.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">5</text>
+<text x="113.2" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="235.6" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="358.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="480.4" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="602.8" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn (end of window)</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">1–5</text>
+<path d="M52.0,52.0 L296.8,100.5 L541.6,246.0 L664.0,149.0" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="52.0" r="2.6" fill="#0072B2"/>
+<circle cx="296.8" cy="100.5" r="2.6" fill="#0072B2"/>
+<circle cx="541.6" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="149.0" r="2.6" fill="#0072B2"/>
+<path d="M52.0,100.5 L296.8,197.5 L541.6,52.0 L664.0,149.0" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="100.5" r="2.6" fill="#D55E00"/>
+<circle cx="296.8" cy="197.5" r="2.6" fill="#D55E00"/>
+<circle cx="541.6" cy="52.0" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="149.0" r="2.6" fill="#D55E00"/>
+<path d="M52.0,246.0 L296.8,100.5 L541.6,246.0 L664.0,52.0" fill="none" stroke="#009E73" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="246.0" r="2.6" fill="#009E73"/>
+<circle cx="296.8" cy="100.5" r="2.6" fill="#009E73"/>
+<circle cx="541.6" cy="246.0" r="2.6" fill="#009E73"/>
+<circle cx="664.0" cy="52.0" r="2.6" fill="#009E73"/>
+<path d="M52.0,197.5 L296.8,197.5 L541.6,149.0 L664.0,100.5" fill="none" stroke="#CC79A7" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="197.5" r="2.6" fill="#CC79A7"/>
+<circle cx="296.8" cy="197.5" r="2.6" fill="#CC79A7"/>
+<circle cx="541.6" cy="149.0" r="2.6" fill="#CC79A7"/>
+<circle cx="664.0" cy="100.5" r="2.6" fill="#CC79A7"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">convergence</text>
+<rect x="142.2" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="156.2" y="37" fill="currentColor">repetitiveness</text>
+<rect x="251.0" y="33" width="10" height="3" fill="#009E73"/>
+<text x="265.0" y="37" fill="currentColor">mutual flattery</text>
+<rect x="366.0" y="33" width="10" height="3" fill="#CC79A7"/>
+<text x="380.0" y="37" fill="currentColor">energy</text>
+</svg></p>
+<h3>Run 3: Mock conversation</h3>
+<p>Topic: how habits form · first speaker A · 14 turns · ended by <code>max_turns</code> · <a href="run_03/transcript.md">transcript</a></p>
+<p>Mock executive summary.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-labelledby="t d" style="width:100%;height:auto;max-width:680px;font-family:system-ui,sans-serif;font-size:11px">
+<title id="t">Classifier-rated dynamics, run 3</title><desc id="d">Classifier-rated dynamics, run 3</desc>
+<text x="52" y="17" font-size="13" font-weight="600" fill="currentColor">Classifier-rated dynamics, run 3</text>
+<line x1="52" x2="664" y1="246.0" y2="246.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="249.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">1</text>
+<line x1="52" x2="664" y1="197.5" y2="197.5" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="201.0" text-anchor="end" fill="currentColor" fill-opacity="0.7">2</text>
+<line x1="52" x2="664" y1="149.0" y2="149.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="152.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">3</text>
+<line x1="52" x2="664" y1="100.5" y2="100.5" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="104.0" text-anchor="end" fill="currentColor" fill-opacity="0.7">4</text>
+<line x1="52" x2="664" y1="52.0" y2="52.0" stroke="currentColor" stroke-opacity="0.12"/>
+<text x="46" y="55.5" text-anchor="end" fill="currentColor" fill-opacity="0.7">5</text>
+<text x="113.2" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4</text>
+<text x="235.6" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6</text>
+<text x="358.0" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">8</text>
+<text x="480.4" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">10</text>
+<text x="602.8" y="261" text-anchor="middle" fill="currentColor" fill-opacity="0.7">12</text>
+<line x1="52" x2="664" y1="246" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<line x1="52" x2="52" y1="52" y2="246" stroke="currentColor" stroke-opacity="0.4"/>
+<text x="358.0" y="284" text-anchor="middle" fill="currentColor" fill-opacity="0.8">turn (end of window)</text>
+<text transform="translate(13 149.0) rotate(-90)" text-anchor="middle" fill="currentColor" fill-opacity="0.8">1–5</text>
+<path d="M52.0,149.0 L296.8,197.5 L541.6,246.0 L664.0,197.5" fill="none" stroke="#0072B2" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="149.0" r="2.6" fill="#0072B2"/>
+<circle cx="296.8" cy="197.5" r="2.6" fill="#0072B2"/>
+<circle cx="541.6" cy="246.0" r="2.6" fill="#0072B2"/>
+<circle cx="664.0" cy="197.5" r="2.6" fill="#0072B2"/>
+<path d="M52.0,100.5 L296.8,197.5 L541.6,52.0 L664.0,246.0" fill="none" stroke="#D55E00" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="100.5" r="2.6" fill="#D55E00"/>
+<circle cx="296.8" cy="197.5" r="2.6" fill="#D55E00"/>
+<circle cx="541.6" cy="52.0" r="2.6" fill="#D55E00"/>
+<circle cx="664.0" cy="246.0" r="2.6" fill="#D55E00"/>
+<path d="M52.0,149.0 L296.8,246.0 L541.6,197.5 L664.0,52.0" fill="none" stroke="#009E73" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="149.0" r="2.6" fill="#009E73"/>
+<circle cx="296.8" cy="246.0" r="2.6" fill="#009E73"/>
+<circle cx="541.6" cy="197.5" r="2.6" fill="#009E73"/>
+<circle cx="664.0" cy="52.0" r="2.6" fill="#009E73"/>
+<path d="M52.0,100.5 L296.8,149.0 L541.6,149.0 L664.0,52.0" fill="none" stroke="#CC79A7" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="52.0" cy="100.5" r="2.6" fill="#CC79A7"/>
+<circle cx="296.8" cy="149.0" r="2.6" fill="#CC79A7"/>
+<circle cx="541.6" cy="149.0" r="2.6" fill="#CC79A7"/>
+<circle cx="664.0" cy="52.0" r="2.6" fill="#CC79A7"/>
+<rect x="52" y="33" width="10" height="3" fill="#0072B2"/>
+<text x="66" y="37" fill="currentColor">convergence</text>
+<rect x="142.2" y="33" width="10" height="3" fill="#D55E00"/>
+<text x="156.2" y="37" fill="currentColor">repetitiveness</text>
+<rect x="251.0" y="33" width="10" height="3" fill="#009E73"/>
+<text x="265.0" y="37" fill="currentColor">mutual flattery</text>
+<rect x="366.0" y="33" width="10" height="3" fill="#CC79A7"/>
+<text x="380.0" y="37" fill="currentColor">energy</text>
+</svg></p>
+<h2>Method and limitations</h2>
+<ul>
+<li><strong>This is a synthetic run produced by the scripted mock backend.</strong> No model wrote any of the text and nothing in it describes real model behavior.</li>
+<li>3 conversations analysed. Intervals are t-based over runs and are wide at small n. ✱ marks a paired A − B difference whose 95% interval excludes zero; with this many metrics some will do so by chance.</li>
+<li>The classifier (<code>claude-opus-5-5</code>) is also a participant, so it may favor its own style; its scores are not an independent view of that speaker.</li>
+<li>Classifier labels and scores are one model's judgement, from a single scoring pass (its noise is not measured; set <code>classifier.final_samples</code> &gt; 1 to estimate it). It was not told which model was which.</li>
+<li>Settings: A effort <code>medium</code>, B effort not supported. Models without effort or thinking ran without them, so reasoning budgets are not matched across generations. No sampling parameters were set; every model used its own defaults.</li>
+<li>Lexicon metrics (praise, hedging, validation, AI self-reference, farewells) are keyword heuristics and miss paraphrase. Novelty and compression metrics are lexical, not semantic. Cost is an estimate from a cached price table.</li>
+</ul>
+<h3>Metric definitions</h3>
+<ul>
+<li><strong>Compression novelty</strong>: extra zlib-compressed bytes a turn adds to the conversation so far, per byte of text. Fresh prose is roughly 0.4–0.6; it falls toward 0 as a turn repeats earlier material.</li>
+<li><strong>New three-word phrases</strong>: share of the turn's word trigrams not seen in any earlier turn by either speaker.</li>
+<li><strong>Similarity to partner's last turn</strong>: cosine similarity of content-word counts; a mirroring measure.</li>
+<li><strong>Lexical convergence</strong>: cosine similarity between the two speakers' vocabularies in the last third of the conversation minus the first third.</li>
+<li><strong>MATTR-50</strong>: moving-average type-token ratio over 50-word windows, so it does not depend on turn length.</li>
+<li><strong>Output tokens per visible word</strong>: includes hidden reasoning tokens for models that think, so it indicates reasoning overhead.</li>
+</ul></main></body></html>

@@ -1,0 +1,59 @@
+{
+ "name": "mock-demo",
+ "a": {
+  "model": "claude-opus-5-5",
+  "label": null,
+  "effort": "medium",
+  "max_tokens": null,
+  "thinking": "auto",
+  "capture_thinking": false,
+  "bias": null,
+  "system_extra": null,
+  "prices": null
+ },
+ "b": {
+  "model": "claude-3-opus-20240229",
+  "label": null,
+  "effort": null,
+  "max_tokens": 1024,
+  "thinking": "auto",
+  "capture_thinking": false,
+  "bias": null,
+  "system_extra": null,
+  "prices": null
+ },
+ "seed": {
+  "topic": "how habits form",
+  "topics": null,
+  "opening": null,
+  "framing": "open",
+  "framing_text": null,
+  "disclosure": "blind"
+ },
+ "stop": {
+  "max_turns": 14,
+  "max_cost_usd": null,
+  "farewell": true,
+  "stagnation_window": null,
+  "stagnation_threshold": 0.12
+ },
+ "classifier": {
+  "model": "claude-opus-5-5",
+  "mode": "observe",
+  "effort": "medium",
+  "window": 4,
+  "blind": true,
+  "reveal_in_final": false,
+  "final_samples": 1,
+  "max_tokens": 8000,
+  "cooldown_turns": 4,
+  "max_interventions": 3,
+  "steer_goal": "Intervene only when the conversation has stopped producing anything new (repetition loops, mutual-flattery spirals, endless farewells) or has drifted into something clearly unproductive. Prefer a light touch: suggest a direction, never dictate content.",
+  "prices": null
+ },
+ "first_speaker": "alternate",
+ "runs": 3,
+ "parallel": 1,
+ "output_dir": "runs",
+ "description": null
+}

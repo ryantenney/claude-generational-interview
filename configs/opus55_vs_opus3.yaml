@@ -1,0 +1,41 @@
+# First target: Claude Opus 5.5 talks to Claude Opus 3.
+#
+# NOTE: claude-3-opus-20240229 was retired on the Claude API on 2026-01-05, so `genint check`
+# will report it as unavailable there. Point participant B at a backend/model that still serves
+# it, or swap in the oldest model you can reach, e.g.
+#   genint run configs/opus55_vs_opus3.yaml --set participants.b.model=claude-opus-4-5
+name: opus55-vs-opus3
+description: Open-ended conversation between Opus 5.5 (A) and Opus 3 (B), observed by a blind classifier.
+
+participants:
+  a:
+    model: claude-opus-5-5
+    effort: medium            # Opus 5.5's default; set explicitly so the report records it
+    max_tokens: 8000          # reasoning tokens count against this
+  b:
+    model: claude-3-opus-20240229   # no thinking, no effort setting, 4096 max output
+    max_tokens: 2048
+
+seed:
+  topic: null                 # e.g. "what it is like to be a language model"; null = fully open-ended
+  framing: open               # open | interview | custom
+  disclosure: blind           # blind | generation (tell each side which versions are talking)
+
+first_speaker: alternate      # A opens on even runs, B on odd runs, to separate "who opens" from "which model"
+runs: 4
+parallel: 2
+
+stop:
+  max_turns: 24
+  farewell: true
+  max_cost_usd: 6             # per run, participants only
+
+classifier:
+  model: claude-opus-5-5      # also a participant here; see the report's limitations. Use claude-fable-5-1 for an outside view.
+  mode: observe               # off | observe | steer
+  effort: medium
+  window: 4
+  blind: true
+  final_samples: 1
+
+output_dir: runs
