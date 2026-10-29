@@ -13,7 +13,7 @@ dependencies = [
     "markdown>=3.5",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = ["pytest>=8"]
 
 [project.scripts]
@@ -21,6 +21,10 @@ genint = "genint.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.uv]
+# Homebrew Pythons can link against an older system libexpat than they need; uv-managed builds bundle their own.
+python-preference = "only-managed"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

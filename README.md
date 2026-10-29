@@ -8,16 +8,22 @@ First target: **Claude Opus 5.5 talking to Claude Opus 3** (`configs/opus55_vs_o
 
 ## Get started
 
-You need Python 3.10 or newer. A real run also needs an Anthropic API key.
+You need [uv](https://docs.astral.sh/uv/getting-started/installation/) (`brew install uv` on macOS). uv downloads
+the pinned Python (3.14, see `.python-version`) on first use, so no system Python is required. A real run also
+needs an Anthropic API key.
 
 **1. Install**
 
 ```bash
 git clone https://github.com/ryantenney/claude-generational-interview && cd claude-generational-interview
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e '.[dev]'
-pytest -q                      # 65 passed, no network needed
+uv sync                        # creates .venv from uv.lock, including dev tools
+uv run pytest -q               # 65 passed, no network needed
+source .venv/bin/activate      # puts `genint` on PATH; or prefix each command below with `uv run`
 ```
+
+The project only uses uv-managed Pythons (`python-preference = "only-managed"` in `pyproject.toml`). Some
+Homebrew Pythons are built against a newer system `libexpat` than older macOS releases ship, which breaks
+`pyexpat`, `plistlib` and pip's bootstrap.
 
 **2. See what you get, with no API key.** The mock backend writes synthetic text, so nothing here describes real
 model behavior, but the whole pipeline runs and the report is real:
@@ -74,6 +80,7 @@ genint run configs/opus55_vs_opus3.yaml --set participants.b.model=claude-opus-4
 | `Estimate exceeds $10; re-run with --yes` | Intended. Lower `runs` or `stop.max_turns`, set `stop.max_cost_usd`, or add `--yes`. |
 | `... does not support an effort setting` | Remove `effort` for that model (older models have none). |
 | Run stops early | Read `termination` in the report: `farewell`, `cost_cap`, `stagnation`, `refusal_by_a/b`, or `max_turns`. |
+| `ensurepip` or `pyexpat` errors | You are on a non-uv Python. Delete `.venv` and run `uv sync`. |
 | API error mid-run | `genint resume <run dir>`; completed turns are kept and not re-billed. |
 
 ### Everyday commands
@@ -92,7 +99,7 @@ Make your own experiment by copying `configs/quickstart.yaml`; the [config refer
 
 | | |
 |---|---|
-| Tests | 65 passing, offline (`pytest`) |
+| Tests | 65 passing, offline (`uv run pytest`) |
 | End-to-end pipeline | Exercised on the scripted mock backend; sample output in [`examples/mock-demo/`](examples/mock-demo/report.md) |
 | Live API calls | **Not yet run by the author.** Development had no Anthropic credentials. Request shapes are asserted against the SDK in `tests/test_backend_requests.py`, but your first real run is the real test, which is why step 4 is small. If something fails against the live API, please open an issue with the error text. |
 
